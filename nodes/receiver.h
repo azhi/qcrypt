@@ -2,7 +2,6 @@
 #define RECEIVER_H
 
 #include "node.h"
-#include "../qbit.h"
 
 class Receiver : public Node
 {
@@ -14,6 +13,8 @@ public:
 
     void sendTypeInfo(int keyLength);
     void getCorrectIndexes();
+
+    bool getCheck();
 };
 
 #endif // RECEIVER_H

@@ -1,6 +1,8 @@
 #include "transmitter.h"
 #include <stdlib.h>
 
+using namespace std;
+
 void Transmitter::sendQBit(QBit* qbit)
 {
     qChannel->add(qbit);
@@ -13,8 +15,8 @@ void Transmitter::sendMsg(vector<int> msg)
 
 QBit* Transmitter::generateRandomQBit()
 {
-    bool type = rand()%2;
-    bool val = rand()%2;
+    bool type = rand() % 2;
+    bool val = rand() % 2;
     key.push_back( KeyDescriptor(type, val, 0) );
     return new QBit(type, val);
 }
@@ -35,4 +37,21 @@ void Transmitter::sendCorrectIndexes()
             correctIndexes.push_back(i);
         }
     sendMsg(correctIndexes);
+}
+
+void Transmitter::sendCheck(int startPos, int count)
+{
+    vector<int> checkMsg;
+    checkMsg.push_back(startPos);
+    checkMsg.push_back(count);
+    for( int i = startPos; i < key.size() && count != 0; ++i)
+        if ( key[i].isActive )
+        {
+            key[i].isActive = 0;
+            checkMsg.push_back(key[i].bit);
+            count--;
+        }
+    if ( count != 0 )
+        checkMsg[1] -= count;
+    sendMsg(checkMsg);
 }

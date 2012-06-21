@@ -7,7 +7,7 @@ bool QBit::getValue(bool valType)
     if (valType == type)
         res = value;
     else
-        res = rand()%2;
-    value = rand()%2;
+        res = rand() % 2;
+    value = rand() % 2;
     return res;
 }

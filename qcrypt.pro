@@ -37,7 +37,8 @@ SOURCES += main.cpp \
     nodes/transmitter.cpp \
     nodes/receiver.cpp \
     nodes/node.cpp \
-    connectioncontroller.cpp
+    connectioncontroller.cpp \
+    nodes/intercepter.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -50,4 +51,5 @@ HEADERS += \
     nodes/node.h \
     nodes/transmitter.h \
     nodes/receiver.h \
-    connectioncontroller.h
+    connectioncontroller.h \
+    nodes/intercepter.h

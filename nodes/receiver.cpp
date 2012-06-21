@@ -1,6 +1,5 @@
 #include "receiver.h"
 #include <stdlib.h>
-#include <iostream>
 
 QBit* Receiver::getQBit()
 {
@@ -16,7 +15,7 @@ vector<int> Receiver::getMsg()
 
 void Receiver::processQBit(QBit* qbit)
 {
-    bool type = rand()%2;
+    bool type = rand() % 2;
     bool val = qbit->getValue(type);
     key.push_back( KeyDescriptor(type, val, 0) );
 }
@@ -36,4 +35,19 @@ void Receiver::getCorrectIndexes()
         key[*curCI].isActive = 1;
         ++curCI;
     }
+}
+
+bool Receiver::getCheck()
+{
+    bool res = true;
+    vector<int> checkMsg = getMsg();
+    int startPos = checkMsg[0]; int count = checkMsg[1];
+    for (int i = startPos, j=2; i < key.size() && count != 0; ++i)
+        if ( key[i].isActive )
+        {
+            key[i].isActive = 0;
+            res &= key[i].bit == checkMsg[j++];
+            count--;
+        }
+    return res;
 }

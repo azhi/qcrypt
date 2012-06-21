@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <qbit.h>
+#include "../qbit.h"
 #include <channels/quantumchannel.h>
 #include <channels/openchannel.h>
 

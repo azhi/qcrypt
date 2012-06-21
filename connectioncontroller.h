@@ -3,18 +3,22 @@
 
 #include <nodes/receiver.h>
 #include <nodes/transmitter.h>
+#include <nodes/intercepter.h>
 
 class ConnectionController
 {
 public:
     ConnectionController();
 
-    void generateKey(int keyLength);
+    bool generateKey(int keyLength);
     void sendText(string* msg);
+
+    bool eveActive;
 
 private:
     Transmitter* alice;
     Receiver* bob;
+    Intercepter* eve;
 };
 
 #endif // CONNECTIONCONTROLLER_H

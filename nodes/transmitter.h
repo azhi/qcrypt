@@ -2,7 +2,6 @@
 #define TRANSMITTER_H
 
 #include "node.h"
-#include "../qbit.h"
 
 class Transmitter : public Node
 {
@@ -14,6 +13,8 @@ public:
 
     void getTypeInfo(int keyLength);
     void sendCorrectIndexes();
+
+    void sendCheck(int startPos, int count);
 
 private:
     vector<KeyDescriptor> rcverKey;
