@@ -1,5 +1,5 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/qcrypt
+folder_01.source = qml/qc_main_form
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 

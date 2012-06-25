@@ -1,23 +1,24 @@
-#include <QtGui/QApplication>
-#include "qmlapplicationviewer.h"
+#include <QtCore>
+#include <QtDeclarative>
+
 #include <time.h>
 #include <stdlib.h>
+
 #include "connectioncontroller.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    QScopedPointer<QApplication> app(createApplication(argc, argv));
-
-    QmlApplicationViewer viewer;
-    viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer.setMainQmlFile(QLatin1String("qml/qcrypt/main.qml"));
-    viewer.showExpanded();
+    QApplication app(argc, argv);
+    QDeclarativeView view;
 
     srand(time(NULL));
     ConnectionController* cc = new ConnectionController();
     cc->generateKey(100);
+    view.rootContext()->setContextProperty("alice", cc->alice);
+    view.setSource(QUrl::fromLocalFile("qml/qc_main_from/untitled.qml"));
+    view.show();
 
-    return app->exec();
+    return app.exec();
 }

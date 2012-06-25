@@ -48,9 +48,9 @@ bool ConnectionController::generateKey(int keyLength)
         cout << "Everything fine!" << endl;
     else
         cout << "Something went wrong :(" << endl;
-    cout << "alice: " << alice->activeKey << endl;
-    cout << "bob: " << bob->activeKey << endl;
-    cout << "eve: " << eve->activeKey << endl;
+    cout << "alice: " << alice->getActiveKey() << endl;
+    cout << "bob: " << bob->getActiveKey() << endl;
+    cout << "eve: " << eve->getActiveKey() << endl;
 
     return successfulGeneration;
 }

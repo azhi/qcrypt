@@ -3,4 +3,4 @@
 qcrypt
 *.user
 Makefile
-moc_qmlapplicationviewer.cpp
+moc_*

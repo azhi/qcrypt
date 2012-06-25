@@ -44,7 +44,7 @@ Rectangle {
             id: key_al_label
             x: 15
             y: 188
-            text: qsTr("Key:")
+            text: qsTr("Key:")+ alice.getActiveKeyQ()
             font.pixelSize: 12
         }
 

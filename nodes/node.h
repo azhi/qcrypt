@@ -1,6 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <Qt/qobject.h>
+
 #include "../qbit.h"
 #include <channels/quantumchannel.h>
 #include <channels/openchannel.h>
@@ -13,8 +15,9 @@ struct KeyDescriptor
     KeyDescriptor(bool polarization_type, bool bit, bool isActive) : polarization_type(polarization_type), bit(bit), isActive(isActive) {};
 };
 
-class Node
+class Node : public QObject
 {
+    Q_OBJECT
 public:
     Node(QuantumChannel* qChannel, OpenChannel* oChannel) : qChannel(qChannel), oChannel(oChannel)
     {
@@ -24,9 +27,11 @@ public:
     static char* alphabet;
 
     void calcActiveKey();
-    string activeKey;
+    string getActiveKey();
+    Q_INVOKABLE QString getActiveKeyQ();
 
 protected:
+    string activeKey;
     QuantumChannel* qChannel;
     OpenChannel* oChannel;
     vector<KeyDescriptor> key;

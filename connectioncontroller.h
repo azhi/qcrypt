@@ -14,8 +14,8 @@ public:
     void sendText(string* msg);
 
     bool eveActive;
-
-private:
+// FIXME: write getters for nodes and make this fields private back
+//private:
     Transmitter* alice;
     Receiver* bob;
     Intercepter* eve;

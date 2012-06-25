@@ -1,6 +1,7 @@
 #include "node.h"
 #include <math.h>
 #include <string.h>
+#include <QString>
 
 char* Node::alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !@#$%^&*()_";
 
@@ -24,3 +25,14 @@ void Node::calcActiveKey()
         activeKey.insert(activeKey.end(), alphabet[res]);
     }
 }
+
+string Node::getActiveKey()
+{
+    return activeKey;
+}
+
+QString Node::getActiveKeyQ()
+{
+    return QString::fromStdString(activeKey);
+}
+
