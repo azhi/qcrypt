@@ -1,2 +1,6 @@
-*.pro.user
 *~
+*.o
+qcrypt
+*.user
+Makefile
+moc_qmlapplicationviewer.cpp
