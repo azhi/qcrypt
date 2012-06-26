@@ -27,31 +27,31 @@ void ConnectionController::setEveActive(bool active)
 
 bool ConnectionController::generateKey(int keyLength)
 {
-    static const char *POLARIZATIONS[4] = {
-        "qml/qc_main_from/Pictures/Polarizations/S-polariz.gif",
-        "qml/qc_main_from/Pictures/Polarizations/D-polariz.gif",
-        "qml/qc_main_from/Pictures/Polarizations/S+polariz.gif",
-        "qml/qc_main_from/Pictures/Polarizations/D+polariz.gif"
+    static const QUrl POLARIZATIONS[4] = {
+        QUrl("qrc:/qml/qc_main_from/Pictures/Polarizations/S-polariz.gif"),
+        QUrl("qrc:/qml/qc_main_from/Pictures/Polarizations/D-polariz.gif"),
+        QUrl("qrc:/qml/qc_main_from/Pictures/Polarizations/S+polariz.gif"),
+        QUrl("qrc:/qml/qc_main_from/Pictures/Polarizations/D+polariz.gif")
     };
     alice->clearKey(); bob->clearKey(); eve->clearKey();
     for( int i=0; i<keyLength; ++i)
     {
         alice->sendQBit(alice->generateRandomQBit());
         uicontr->setProperty("alice_polarization", "source",
-                             POLARIZATIONS[alice->getLastQBitInfo()]);
+                             POLARIZATIONS[alice->getLastQBitInfo()].toString().toStdString().c_str());
         usleep(50000);
         uicontr->refreshForm();
         if (eveActive)
         {
             eve->interceptQBit();
             uicontr->setProperty("eve_polarization", "source",
-                                 POLARIZATIONS[eve->getLastQBitInfo()]);
+                                 POLARIZATIONS[eve->getLastQBitInfo()].toString().toStdString().c_str());
             usleep(50000);
             uicontr->refreshForm();
         }
         bob->processQBit(bob->getQBit());
         uicontr->setProperty("bob_polarization", "source",
-                             POLARIZATIONS[bob->getLastQBitInfo()]);
+                             POLARIZATIONS[bob->getLastQBitInfo()].toString().toStdString().c_str());
         usleep(50000);
         uicontr->refreshForm();
     }
@@ -66,7 +66,9 @@ bool ConnectionController::generateKey(int keyLength)
         eve->interceptCorrectIndexes();
     bob->getCorrectIndexes();
 
-    alice->sendCheck(0, 18);
+    int checkLength = keyLength/5;
+    int beginPos = random() % (keyLength - checkLength - 1);
+    alice->sendCheck(beginPos, checkLength);
     if (eveActive)
         eve->interceptCheck();
     bool successfulGeneration = bob->getCheck();

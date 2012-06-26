@@ -103,22 +103,11 @@ Rectangle {
             }
         }
 
-        TextInput {
-            id: key_al_field
-            x: 49
-            y: 228
-            width: 152
-            height: 20
-            text: qsTr("")
-            readOnly: true
-            font.pixelSize: 12
-        }
-
         Rectangle {
             id: generate_btn
-            x: 50
+            x: 121
             y: 199
-            width: 116
+            width: 81
             height: 20
             color: "#ffffff"
             border.color: "#000000"
@@ -126,22 +115,51 @@ Rectangle {
                 id: generate_area
                 x: 0
                 y: 0
-                width: 116
+                width: 80
                 height: 20
-                onClicked: { cc.generateKey(100) }
+                onClicked: { cc.generateKey(key_length_field.text) }
             }
 
             Text {
                 id: generate_label
                 x: 0
                 y: 0
-                width: 116
+                width: 80
                 height: 20
                 text: qsTr("Generate key")
                 font.pixelSize: 12
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
+        }
+
+        Text {
+            id: keyl_al_label
+            x: 15
+            y: 202
+            text: qsTr("Length: ")
+            font.pixelSize: 12
+            objectName: "alice_key"
+        }
+
+        Rectangle {
+            id: text_border1
+            x: 71
+            y: 200
+            width: 43
+            height: 20
+            color: "#ffffff"
+            border.color: "#000000"
+        }
+
+        TextInput {
+            id: key_length_field
+            x: 77
+            y: 203
+            width: 37
+            height: 20
+            text: qsTr("100")
+            font.pixelSize: 12
         }
 
 
@@ -191,17 +209,6 @@ Rectangle {
             text: qsTr("Key: ")
             z: 1
             font.pixelSize: 12
-        }
-
-        TextInput {
-            id: key_bob_field
-            x: 49
-            y: 185
-            width: 152
-            height: 20
-            text: qsTr("")
-            font.pixelSize: 12
-            readOnly: true
         }
 
         TextEdit {
@@ -260,17 +267,6 @@ Rectangle {
             text: qsTr("Key: ")
             font.pixelSize: 12
             z: 1
-        }
-
-        TextInput {
-            id: key_bob_field1
-            x: 49
-            y: 214
-            width: 152
-            height: 20
-            text: qsTr("")
-            font.pixelSize: 12
-            readOnly: true
         }
 
         Image {
