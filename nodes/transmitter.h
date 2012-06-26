@@ -13,8 +13,11 @@ public:
 
     void getTypeInfo(int keyLength);
     void sendCorrectIndexes();
-
     void sendCheck(int startPos, int count);
+
+    void sendText(string msg);
+
+    void clearKey();
 
 private:
     vector<KeyDescriptor> rcverKey;

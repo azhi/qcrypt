@@ -1,14 +1,10 @@
 #include "quantumchannel.h"
 #include <string.h>
+#include <iostream>
 
 QuantumChannel::QuantumChannel()
 {
     qbitQueue.clear();
-}
-
-QBit* QuantumChannel::read_first()
-{
-    return qbitQueue.front();
 }
 
 QBit* QuantumChannel::get_first()

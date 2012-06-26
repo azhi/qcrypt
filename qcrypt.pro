@@ -1,7 +1,7 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/qc_main_form
-folder_01.target = qml
-DEPLOYMENTFOLDERS = folder_01
+# folder_01.source = qml
+# folder_01.target = qml
+# DEPLOYMENTFOLDERS = folder_01
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -38,7 +38,8 @@ SOURCES += main.cpp \
     nodes/receiver.cpp \
     nodes/node.cpp \
     connectioncontroller.cpp \
-    nodes/intercepter.cpp
+    nodes/intercepter.cpp \
+    uicontroller.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -52,4 +53,11 @@ HEADERS += \
     nodes/transmitter.h \
     nodes/receiver.h \
     connectioncontroller.h \
-    nodes/intercepter.h
+    nodes/intercepter.h \
+    uicontroller.h
+
+OTHER_FILES += \
+    qml/qc_main_from/untitled.qml
+
+RESOURCES += \
+    resources.qrc

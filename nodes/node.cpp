@@ -3,6 +3,9 @@
 #include <string.h>
 #include <QString>
 
+#include <iostream>
+using namespace std;
+
 char* Node::alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !@#$%^&*()_";
 
 void Node::calcActiveKey()
@@ -34,5 +37,11 @@ string Node::getActiveKey()
 QString Node::getActiveKeyQ()
 {
     return QString::fromStdString(activeKey);
+}
+
+void Node::clearKey()
+{
+    key.clear();
+    activeKey.clear();
 }
 

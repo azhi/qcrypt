@@ -3,7 +3,7 @@
 
 using namespace std;
 
-ConnectionController::ConnectionController()
+ConnectionController::ConnectionController(UiController* uicontr) : uicontr(uicontr)
 {
     QuantumChannel* qChannel = new QuantumChannel();
     OpenChannel* oChannel = new OpenChannel();
@@ -15,8 +15,19 @@ ConnectionController::ConnectionController()
     cout << "Successfully created bob, alice and eve!" << endl;
 }
 
+bool ConnectionController::isEveActive()
+{
+    return eveActive;
+}
+
+void ConnectionController::setEveActive(bool active)
+{
+    eveActive = active;
+}
+
 bool ConnectionController::generateKey(int keyLength)
 {
+    alice->clearKey(); bob->clearKey(); eve->clearKey();
     for( int i=0; i<keyLength; ++i)
     {
         alice->sendQBit(alice->generateRandomQBit());
@@ -48,13 +59,25 @@ bool ConnectionController::generateKey(int keyLength)
         cout << "Everything fine!" << endl;
     else
         cout << "Something went wrong :(" << endl;
-    cout << "alice: " << alice->getActiveKey() << endl;
-    cout << "bob: " << bob->getActiveKey() << endl;
-    cout << "eve: " << eve->getActiveKey() << endl;
+
+    string keyMsg = "Key: " + alice->getActiveKey();
+    uicontr->setProperty("alice_key", "text", keyMsg.c_str());
+    keyMsg = "Key: " + bob->getActiveKey();
+    uicontr->setProperty("bob_key", "text", keyMsg.c_str());
+    keyMsg = "Key: " + eve->getActiveKey();
+    uicontr->setProperty("eve_key", "text", keyMsg.c_str());
 
     return successfulGeneration;
 }
 
-void ConnectionController::sendText(string* msg)
+void ConnectionController::sendText(QString msg)
 {
+    string eveText, bobText;
+    alice->sendText(msg.toStdString());
+    if (eveActive)
+        eveText = eve->interceptText();
+    bobText = bob->getText();
+
+    uicontr->setProperty("eve_text", "text", eveText.c_str());
+    uicontr->setProperty("bob_text", "text", bobText.c_str());
 }

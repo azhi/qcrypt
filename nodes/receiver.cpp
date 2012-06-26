@@ -51,3 +51,12 @@ bool Receiver::getCheck()
         }
     return res;
 }
+
+string Receiver::getText()
+{
+    vector<int> encodedMsg = getMsg();
+    string decodedMsg;
+    for( int i=0; i < encodedMsg.size(); ++i)
+        decodedMsg.push_back(encodedMsg[i] ^ activeKey[i % activeKey.size()]);
+    return decodedMsg;
+}

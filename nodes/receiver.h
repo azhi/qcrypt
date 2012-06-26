@@ -13,8 +13,9 @@ public:
 
     void sendTypeInfo(int keyLength);
     void getCorrectIndexes();
-
     bool getCheck();
+
+    string getText();
 };
 
 #endif // RECEIVER_H

@@ -11,7 +11,6 @@ class OpenChannel
 public:
     OpenChannel();
     int get_first();
-    int read_first();
     void add(int item);
     void add(vector<int> vec);
 

@@ -1,13 +1,8 @@
-#include "openchannel.h"
+#include "openchannel.h";
 
 OpenChannel::OpenChannel()
 {
     msgQueue.clear();
-}
-
-int OpenChannel::read_first()
-{
-    return msgQueue.front();
 }
 
 int OpenChannel::get_first()

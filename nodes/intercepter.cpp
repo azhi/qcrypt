@@ -47,3 +47,19 @@ void Intercepter::interceptCheck()
             count--;
         }
 }
+
+string Intercepter::interceptText()
+{
+    vector<int> encodedMsg = interceptMsg();
+    string decodedMsg;
+    for( int i=0; i < encodedMsg.size(); ++i)
+        decodedMsg.push_back(encodedMsg[i] ^ activeKey[i % activeKey.size()]);
+    return decodedMsg;
+}
+
+void Intercepter::clearKey()
+{
+    key.clear();
+    activeKey.clear();
+    rcverKey.clear();
+}

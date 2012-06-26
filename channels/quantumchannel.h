@@ -11,7 +11,6 @@ class QuantumChannel
 public:
     QuantumChannel();
     QBit* get_first();
-    QBit* read_first();
     void add(QBit* item);
 
 private:

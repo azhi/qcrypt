@@ -21,19 +21,20 @@ class Node : public QObject
 public:
     Node(QuantumChannel* qChannel, OpenChannel* oChannel) : qChannel(qChannel), oChannel(oChannel)
     {
-        key.clear();
-        activeKey.clear();
+        clearKey();
     };
     static char* alphabet;
 
     void calcActiveKey();
+    void clearKey();
     string getActiveKey();
     Q_INVOKABLE QString getActiveKeyQ();
+    OpenChannel* oChannel;
 
 protected:
     string activeKey;
     QuantumChannel* qChannel;
-    OpenChannel* oChannel;
+
     vector<KeyDescriptor> key;
 
 };

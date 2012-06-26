@@ -12,8 +12,11 @@ public:
 
     void interceptTypeInfo(int keyLength);
     void interceptCorrectIndexes();
-
     void interceptCheck();
+
+    string interceptText();
+
+    void clearKey();
 
 private:
     vector<KeyDescriptor> rcverKey;

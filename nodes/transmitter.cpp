@@ -1,6 +1,6 @@
 #include "transmitter.h"
 #include <stdlib.h>
-
+#include <iostream>
 using namespace std;
 
 void Transmitter::sendQBit(QBit* qbit)
@@ -54,4 +54,19 @@ void Transmitter::sendCheck(int startPos, int count)
     if ( count != 0 )
         checkMsg[1] -= count;
     sendMsg(checkMsg);
+}
+
+void Transmitter::sendText(string msg)
+{
+    vector<int> encodedMsg;
+    for( int i=0; i < msg.size(); ++i)
+        encodedMsg.push_back(msg[i] ^ activeKey[i % activeKey.size()]);
+    sendMsg(encodedMsg);
+}
+
+void Transmitter::clearKey()
+{
+    key.clear();
+    activeKey.clear();
+    rcverKey.clear();
 }

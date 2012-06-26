@@ -10,7 +10,7 @@ Rectangle {
         x: 124
         y: 12
         width: 215
-        height: 242
+        height: 289
         color: "#ffffff"
         border.color: "#000000"
 
@@ -33,6 +33,7 @@ Rectangle {
 
         Image {
             id: cur_al_polarization
+            objectName: "alice_polarization"
             x: 88
             y: 139
             width: 40
@@ -42,16 +43,17 @@ Rectangle {
 
         Text {
             id: key_al_label
+            objectName: "alice_key"
             x: 15
-            y: 188
-            text: qsTr("Key:")+ alice.getActiveKeyQ()
+            y: 231
+            text: qsTr("Key: ")
             font.pixelSize: 12
         }
 
         Rectangle {
             id: text_border
             x: 9
-            y: 213
+            y: 256
             width: 86
             height: 20
             color: "#ffffff"
@@ -61,7 +63,7 @@ Rectangle {
         TextInput {
             id: send_text_field
             x: 15
-            y: 216
+            y: 259
             width: 80
             height: 20
             text: qsTr("")
@@ -71,10 +73,11 @@ Rectangle {
         Rectangle {
             id: send_btn
             x: 121
-            y: 213
+            y: 256
             width: 80
             height: 20
             color: "#ffffff"
+            border.color: "#000000"
 
             MouseArea {
                 id: send_area
@@ -82,6 +85,9 @@ Rectangle {
                 y: 0
                 width: 80
                 height: 20
+                onClicked: {
+                    cc.sendText(send_text_field.text)
+                }
             }
 
             Text {
@@ -100,12 +106,42 @@ Rectangle {
         TextInput {
             id: key_al_field
             x: 49
-            y: 185
+            y: 228
             width: 152
             height: 20
             text: qsTr("")
             readOnly: true
             font.pixelSize: 12
+        }
+
+        Rectangle {
+            id: generate_btn
+            x: 50
+            y: 199
+            width: 116
+            height: 20
+            color: "#ffffff"
+            border.color: "#000000"
+            MouseArea {
+                id: generate_area
+                x: 0
+                y: 0
+                width: 116
+                height: 20
+                onClicked: { cc.generateKey(100) }
+            }
+
+            Text {
+                id: generate_label
+                x: 0
+                y: 0
+                width: 116
+                height: 20
+                text: qsTr("Generate key")
+                font.pixelSize: 12
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
         }
 
 
@@ -139,6 +175,7 @@ Rectangle {
 
         Image {
             id: cur_bob_polarization
+            objectName: "bob_polarization"
             x: 88
             y: 139
             width: 40
@@ -148,9 +185,10 @@ Rectangle {
 
         Text {
             id: key_bob_label
+            objectName: "bob_key"
             x: 15
             y: 188
-            text: qsTr("Key:")
+            text: qsTr("Key: ")
             z: 1
             font.pixelSize: 12
         }
@@ -168,6 +206,7 @@ Rectangle {
 
         TextEdit {
             id: text_bob_field
+            objectName: "bob_text"
             x: 109
             y: 215
             width: 92
@@ -191,9 +230,9 @@ Rectangle {
     Rectangle {
         id: eve_descr
         x: 393
-        y: 123
+        y: 101
         width: 215
-        height: 242
+        height: 273
         color: "#ffffff"
         border.color: "#000000"
         Text {
@@ -215,9 +254,10 @@ Rectangle {
 
         Text {
             id: key_eve_label
+            objectName: "eve_key"
             x: 15
-            y: 189
-            text: qsTr("Key:")
+            y: 216
+            text: qsTr("Key: ")
             font.pixelSize: 12
             z: 1
         }
@@ -225,7 +265,7 @@ Rectangle {
         TextInput {
             id: key_bob_field1
             x: 49
-            y: 187
+            y: 214
             width: 152
             height: 20
             text: qsTr("")
@@ -235,6 +275,7 @@ Rectangle {
 
         Image {
             id: cur_eve_polarization
+            objectName: "eve_polarization"
             x: 88
             y: 139
             width: 40
@@ -244,8 +285,9 @@ Rectangle {
 
         TextEdit {
             id: text_eve_field
+            objectName: "eve_text"
             x: 111
-            y: 216
+            y: 243
             width: 90
             height: 20
             text: qsTr("")
@@ -255,10 +297,52 @@ Rectangle {
         Text {
             id: text_eve_label
             x: 15
-            y: 219
-            text: qsTr("Intersept text:")
+            y: 246
+            text: qsTr("Intercept text:")
             font.pixelSize: 12
             z: 1
+        }
+
+        Rectangle {
+            id: active_btn
+            x: 50
+            y: 185
+            width: 116
+            height: 20
+            color: "#ffffff"
+            border.color: "#000000"
+            MouseArea {
+                id: active_area
+                x: 0
+                y: 0
+                width: 116
+                height: 20
+                onClicked: {
+                    if (cc.isEveActive()) {
+                        cc.setEveActive(false);
+                        active_label.text = qsTr("Activate Eve");
+                    }
+                    else {
+                        cc.setEveActive(true);
+                        active_label.text = qsTr("Deactivate Eve");
+                    }
+
+                    text_eve_field.text = qsTr("");
+                    key_eve_label.text = qsTr("Key: ");
+                }
+            }
+
+            Text {
+                id: active_label
+                x: 0
+                y: 0
+                width: 116
+                height: 20
+                text: qsTr("Deactivate Eve")
+                font.pixelSize: 12
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
         }
 
 

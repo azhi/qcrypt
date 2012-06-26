@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/qc_main_from/untitled.qml</file>
+        <file>qml/qc_main_from/Pictures/alice.png</file>
+        <file>qml/qc_main_from/Pictures/bob.png</file>
+        <file>qml/qc_main_from/Pictures/eve.png</file>
+        <file>qml/qc_main_from/Pictures/Polarizations/V_pol.xcf</file>
+    </qresource>
+</RCC>
