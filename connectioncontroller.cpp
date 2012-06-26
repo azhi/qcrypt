@@ -39,23 +39,25 @@ bool ConnectionController::generateKey(int keyLength)
     for( int i=0; i<keyLength; ++i)
     {
         alice->sendQBit(alice->generateRandomQBit());
-        uicontr->setProperty("alice_polarization", "source",
-                             POLARIZATIONS[alice->getLastQBitInfo()].toString().toStdString().c_str());
-        usleep(50000);
         uicontr->refreshForm();
         if (eveActive)
         {
             eve->interceptQBit();
-            uicontr->setProperty("eve_polarization", "source",
-                                 POLARIZATIONS[eve->getLastQBitInfo()].toString().toStdString().c_str());
-            usleep(50000);
             uicontr->refreshForm();
         }
         bob->processQBit(bob->getQBit());
-        uicontr->setProperty("bob_polarization", "source",
-                             POLARIZATIONS[bob->getLastQBitInfo()].toString().toStdString().c_str());
-        usleep(50000);
-        uicontr->refreshForm();
+        if (i%5 == 1)
+        {
+          uicontr->refreshForm();
+          uicontr->setProperty("alice_polarization", "source",
+                               POLARIZATIONS[alice->getLastQBitInfo()].toString().toStdString().c_str());
+          if (eveActive)
+            uicontr->setProperty("eve_polarization", "source",
+                                 POLARIZATIONS[eve->getLastQBitInfo()].toString().toStdString().c_str());
+          uicontr->setProperty("bob_polarization", "source",
+                               POLARIZATIONS[bob->getLastQBitInfo()].toString().toStdString().c_str());
+          usleep(400000);
+        }
     }
 
     uicontr->writeToLog("Sending information about bob filtering");
