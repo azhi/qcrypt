@@ -1,4 +1,4 @@
-#include "openchannel.h";
+#include "openchannel.h"
 
 OpenChannel::OpenChannel()
 {

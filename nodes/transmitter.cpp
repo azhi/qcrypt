@@ -1,7 +1,5 @@
 #include "transmitter.h"
 #include <stdlib.h>
-#include <iostream>
-using namespace std;
 
 void Transmitter::sendQBit(QBit* qbit)
 {

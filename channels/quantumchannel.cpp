@@ -1,6 +1,5 @@
 #include "quantumchannel.h"
 #include <string.h>
-#include <iostream>
 
 QuantumChannel::QuantumChannel()
 {
