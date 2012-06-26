@@ -46,7 +46,7 @@ bool ConnectionController::generateKey(int keyLength)
             uicontr->refreshForm();
         }
         bob->processQBit(bob->getQBit());
-        if (i%5 == 1)
+        if (i % (keyLength/10) == 1)
         {
           uicontr->refreshForm();
           uicontr->setProperty("alice_polarization", "source",
@@ -56,7 +56,7 @@ bool ConnectionController::generateKey(int keyLength)
                                  POLARIZATIONS[eve->getLastQBitInfo()].toString().toStdString().c_str());
           uicontr->setProperty("bob_polarization", "source",
                                POLARIZATIONS[bob->getLastQBitInfo()].toString().toStdString().c_str());
-          usleep(400000);
+          usleep(1000000);
         }
     }
 
