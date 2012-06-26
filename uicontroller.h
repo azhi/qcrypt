@@ -12,6 +12,8 @@ public:
 
     void setProperty(const char* objectName, const char* propertyName, const char* value);
     string getProperty(const char* objectName, const char* propertyName);
+    void clearLog();
+    void writeToLog(const char* msg);
     void refreshForm(void);
 
 private:

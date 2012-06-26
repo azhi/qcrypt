@@ -3,7 +3,7 @@ import QtQuick 1.1
 
 Rectangle {
     width: 1000
-    height: 400
+    height: 600
 
     Rectangle {
         id: alice_descr
@@ -341,6 +341,39 @@ Rectangle {
             }
         }
 
+
+    }
+
+    TextEdit {
+        id: sys_log_field
+        objectName: "sys_log"
+        x: 24
+        y: 398
+        width: 965
+        height: 180
+        text: qsTr("")
+        readOnly: true
+        z: 1
+        wrapMode: TextEdit.WordWrap
+        font.pixelSize: 12
+    }
+
+    Rectangle {
+        id: sys_log_border
+        x: 18
+        y: 392
+        width: 965
+        height: 181
+        color: "#ffffff"
+        border.color: "#000000"
+    }
+
+    Text {
+        id: log_label
+        x: 24
+        y: 368
+        text: qsTr("Log: ")
+        font.pixelSize: 12
 
     }
 }

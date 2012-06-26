@@ -26,7 +26,7 @@ void Transmitter::getTypeInfo(int keyLength)
         rcverKey.push_back( KeyDescriptor(oChannel->get_first(), 0, 0) );
 }
 
-void Transmitter::sendCorrectIndexes()
+int Transmitter::sendCorrectIndexes()
 {
     vector<int> correctIndexes;
     for(int i=0; i<rcverKey.size(); ++i)
@@ -36,10 +36,13 @@ void Transmitter::sendCorrectIndexes()
             correctIndexes.push_back(i);
         }
     sendMsg(correctIndexes);
+    //return count of correct Indexes for system log
+    return correctIndexes.size();
 }
 
-void Transmitter::sendCheck(int startPos, int count)
+string Transmitter::sendCheck(int startPos, int count)
 {
+    string res; //returning check message for system log
     vector<int> checkMsg;
     checkMsg.push_back(startPos);
     checkMsg.push_back(count);
@@ -48,11 +51,13 @@ void Transmitter::sendCheck(int startPos, int count)
         {
             key[i].isActive = 0;
             checkMsg.push_back(key[i].bit);
+            res.append(key[i].bit?"1":"0");
             count--;
         }
     if ( count != 0 )
         checkMsg[1] -= count;
     sendMsg(checkMsg);
+    return res;
 }
 
 void Transmitter::sendText(string msg)

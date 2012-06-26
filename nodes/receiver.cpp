@@ -38,19 +38,21 @@ void Receiver::getCorrectIndexes()
     }
 }
 
-bool Receiver::getCheck()
+string Receiver::getCheck(bool* res)
 {
-    bool res = true;
+    string returningMsg; //returning check message for system log
+    *res = true;
     vector<int> checkMsg = getMsg();
     int startPos = checkMsg[0]; int count = checkMsg[1];
     for (int i = startPos, j=2; i < key.size() && count != 0; ++i)
         if ( key[i].isActive )
         {
             key[i].isActive = 0;
-            res &= key[i].bit == checkMsg[j++];
+            *res &= key[i].bit == checkMsg[j++];
+            returningMsg.append(key[i].bit?"1":"0");
             count--;
         }
-    return res;
+    return returningMsg;
 }
 
 string Receiver::getText()

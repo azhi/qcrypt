@@ -12,8 +12,8 @@ public:
     QBit* generateRandomQBit();
 
     void getTypeInfo(int keyLength);
-    void sendCorrectIndexes();
-    void sendCheck(int startPos, int count);
+    int sendCorrectIndexes();
+    string sendCheck(int startPos, int count);
 
     void sendText(string msg);
 

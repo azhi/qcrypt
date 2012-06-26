@@ -13,7 +13,7 @@ public:
 
     void sendTypeInfo(int keyLength);
     void getCorrectIndexes();
-    bool getCheck();
+    string getCheck(bool *res);
 
     string getText();
 };

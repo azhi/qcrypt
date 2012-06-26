@@ -27,6 +27,8 @@ void ConnectionController::setEveActive(bool active)
 
 bool ConnectionController::generateKey(int keyLength)
 {
+    uicontr->clearLog();
+    uicontr->writeToLog("Beginnig to generate the key");
     static const QUrl POLARIZATIONS[4] = {
         QUrl("qrc:/qml/qc_main_from/Pictures/Polarizations/S-polariz.gif"),
         QUrl("qrc:/qml/qc_main_from/Pictures/Polarizations/D-polariz.gif"),
@@ -56,31 +58,42 @@ bool ConnectionController::generateKey(int keyLength)
         uicontr->refreshForm();
     }
 
+    uicontr->writeToLog("Sending information about bob filtering");
     bob->sendTypeInfo(keyLength);
     if (eveActive)
         eve->interceptTypeInfo(keyLength);
     alice->getTypeInfo(keyLength);
 
-    alice->sendCorrectIndexes();
+    uicontr->writeToLog("Sending information about correct bob quesses");
+    int count = alice->sendCorrectIndexes();
+    char* msg = (char*) malloc(sizeof(char)*500);
+    sprintf(msg, "bob quessed rigth %d out of %d QBits", count, keyLength);
+    uicontr->writeToLog(msg);
     if (eveActive)
         eve->interceptCorrectIndexes();
     bob->getCorrectIndexes();
 
+    uicontr->writeToLog("Perform partial key checking");
     int checkLength = keyLength/5;
     int beginPos = random() % (keyLength - checkLength - 1);
-    alice->sendCheck(beginPos, checkLength);
+    string aliceChKey = alice->sendCheck(beginPos, checkLength);
+    sprintf(msg, "Alice's part of the key: %s", aliceChKey.c_str());
+    uicontr->writeToLog(msg);
     if (eveActive)
         eve->interceptCheck();
-    bool successfulGeneration = bob->getCheck();
+    bool successfulGeneration;
+    string bobChKey = bob->getCheck(&successfulGeneration);
+    sprintf(msg, "Bob's part of the key:   %s", bobChKey.c_str());
+    uicontr->writeToLog(msg);
 
     alice->calcActiveKey();
     bob->calcActiveKey();
     eve->calcActiveKey();
 
     if (successfulGeneration)
-        cout << "Everything is fine!" << endl;
+        uicontr->writeToLog("Everything is fine!");
     else
-        cout << "Something went wrong :(" << endl;
+        uicontr->writeToLog("Something went wrong");
 
     string keyMsg = "Key: " + alice->getActiveKey();
     uicontr->setProperty("alice_key", "text", keyMsg.c_str());
