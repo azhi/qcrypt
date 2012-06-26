@@ -215,7 +215,7 @@ Rectangle {
             id: text_bob_field
             objectName: "bob_text"
             x: 109
-            y: 215
+            y: 218
             width: 92
             height: 20
             text: qsTr("")
@@ -283,7 +283,7 @@ Rectangle {
             id: text_eve_field
             objectName: "eve_text"
             x: 111
-            y: 243
+            y: 246
             width: 90
             height: 20
             text: qsTr("")
