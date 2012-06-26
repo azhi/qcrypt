@@ -4,3 +4,4 @@ qcrypt
 *.user
 Makefile
 moc_*
+*_resources.cpp

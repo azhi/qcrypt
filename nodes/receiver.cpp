@@ -17,6 +17,7 @@ void Receiver::processQBit(QBit* qbit)
 {
     bool type = rand() % 2;
     bool val = qbit->getValue(type);
+    lastQBitInformation = type + val * 2;
     key.push_back( KeyDescriptor(type, val, 0) );
 }
 

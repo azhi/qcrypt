@@ -29,11 +29,13 @@ public:
     void clearKey();
     string getActiveKey();
     Q_INVOKABLE QString getActiveKeyQ();
+    int getLastQBitInfo();
 
 protected:
     string activeKey;
     QuantumChannel* qChannel;
     OpenChannel* oChannel;
+    int lastQBitInformation;
 
     vector<KeyDescriptor> key;
 

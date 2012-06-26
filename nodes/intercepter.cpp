@@ -6,6 +6,7 @@ void Intercepter::interceptQBit()
     QBit* qbit = qChannel->get_first();
     bool type = rand() % 2;
     bool val = qbit->getValue(type);
+    lastQBitInformation = type + val * 2;
     key.push_back( KeyDescriptor(type, val, 0) );
     qChannel->add( new QBit(type,val) );
 }

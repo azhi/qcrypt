@@ -16,6 +16,7 @@ QBit* Transmitter::generateRandomQBit()
     bool type = rand() % 2;
     bool val = rand() % 2;
     key.push_back( KeyDescriptor(type, val, 0) );
+    lastQBitInformation = type + val * 2;
     return new QBit(type, val);
 }
 

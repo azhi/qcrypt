@@ -45,3 +45,7 @@ void Node::clearKey()
     activeKey.clear();
 }
 
+int Node::getLastQBitInfo()
+{
+    return lastQBitInformation;
+}

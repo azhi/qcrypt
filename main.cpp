@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     view.rootContext()->setContextProperty("bob", cc->getReceiverInstance());
     view.rootContext()->setContextProperty("eve", cc->getIntercepterInstance());
 
-    cc->generateKey(100);
+    //cc->generateKey(100);
     view.show();
 
     return app.exec();
