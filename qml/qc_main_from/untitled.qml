@@ -28,6 +28,7 @@ Rectangle {
             y: 34
             width: 100
             height: 100
+            fillMode: Image.PreserveAspectFit
             source: "Pictures/alice.png"
         }
 
@@ -188,6 +189,7 @@ Rectangle {
             y: 34
             width: 100
             height: 100
+            fillMode: Image.PreserveAspectFit
             source: "Pictures/bob.png"
         }
 
@@ -256,6 +258,7 @@ Rectangle {
             y: 34
             width: 100
             height: 100
+            fillMode: Image.PreserveAspectFit
             source: "Pictures/eve.png"
         }
 
