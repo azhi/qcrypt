@@ -4,6 +4,9 @@
         <file>qml/qc_main_from/Pictures/alice.png</file>
         <file>qml/qc_main_from/Pictures/bob.png</file>
         <file>qml/qc_main_from/Pictures/eve.png</file>
-        <file>qml/qc_main_from/Pictures/Polarizations/V_pol.xcf</file>
+        <file>qml/qc_main_from/Pictures/Polarizations/D-polariz.gif</file>
+        <file>qml/qc_main_from/Pictures/Polarizations/D+polariz.gif</file>
+        <file>qml/qc_main_from/Pictures/Polarizations/S-polariz.gif</file>
+        <file>qml/qc_main_from/Pictures/Polarizations/S+polariz.gif</file>
     </qresource>
 </RCC>

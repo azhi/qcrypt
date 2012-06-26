@@ -38,7 +38,7 @@ Rectangle {
             y: 139
             width: 40
             height: 40
-            source: "Pictures/Polarizations/V_pol.xcf"
+            source: "Pictures/Polarizations/S-polariz.gif"
         }
 
         Text {
@@ -180,7 +180,7 @@ Rectangle {
             y: 139
             width: 40
             height: 40
-            source: "Pictures/Polarizations/V_pol.xcf"
+            source: "Pictures/Polarizations/D+polariz.gif"
         }
 
         Text {
@@ -280,7 +280,7 @@ Rectangle {
             y: 139
             width: 40
             height: 40
-            source: "Pictures/Polarizations/V_pol.xcf"
+            source: "Pictures/Polarizations/D-polariz.gif"
         }
 
         TextEdit {
