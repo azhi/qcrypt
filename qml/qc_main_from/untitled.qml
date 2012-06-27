@@ -243,6 +243,7 @@ Rectangle {
         width: 215
         height: 273
         color: "#ffffff"
+        opacity: 1
         border.color: "#000000"
         Text {
             id: eve_label
@@ -279,7 +280,7 @@ Rectangle {
             y: 139
             width: 40
             height: 40
-            source: "Pictures/Polarizations/D-polariz.gif"
+            source: "Pictures/Polarizations/D+polariz.gif"
         }
 
         TextEdit {
@@ -316,14 +317,17 @@ Rectangle {
                 y: 0
                 width: 116
                 height: 20
+                opacity: 1
                 onClicked: {
                     if (cc.isEveActive()) {
                         cc.setEveActive(false);
                         active_label.text = qsTr("Activate Eve");
+                        eve_descr.opacity = 0.3
                     }
                     else {
                         cc.setEveActive(true);
                         active_label.text = qsTr("Deactivate Eve");
+                        eve_descr.opacity = 1.0
                     }
 
                     text_eve_field.text = qsTr("");
