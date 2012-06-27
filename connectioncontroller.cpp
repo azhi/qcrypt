@@ -1,6 +1,6 @@
 #include "connectioncontroller.h"
 #include <iostream>
-#include <unistd.h>
+#include <QWaitCondition>
 
 using namespace std;
 
@@ -57,7 +57,7 @@ bool ConnectionController::generateKey(int keyLength)
                                  POLARIZATIONS[eve->getLastQBitInfo()].toString().toStdString().c_str());
           uicontr->setProperty("bob_polarization", "source",
                                POLARIZATIONS[bob->getLastQBitInfo()].toString().toStdString().c_str());
-          usleep(1000000);
+          Sleep(1000);
         }
     }
 
@@ -118,4 +118,11 @@ void ConnectionController::sendText(QString msg)
 
     uicontr->setProperty("eve_text", "text", eveText.c_str());
     uicontr->setProperty("bob_text", "text", bobText.c_str());
+}
+
+void Sleep(int ms)
+{
+  QWaitCondition sleep;
+  QMutex mutex;
+  sleep.wait(&mutex, ms);
 }

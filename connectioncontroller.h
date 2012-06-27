@@ -6,6 +6,8 @@
 #include "nodes/intercepter.h"
 #include "uicontroller.h"
 
+void Sleep(int ms);
+
 class ConnectionController : public QObject
 {
     Q_OBJECT
